@@ -9,6 +9,7 @@ A beginner-friendly deep learning project implementing a multi-layer neural netw
 - ReLU activation function
 - Matrix multiplication using NumPy
 - Shape tracking through layers
+- Softmax probability output
 
 ## Network Architecture
 
