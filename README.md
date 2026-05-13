@@ -38,6 +38,13 @@ Input Layer (5)
 ```bash
 python forward_pass.py
 ```
+## Future Improvements
+
+- Add softmax
+- Add backpropagation
+- Add gradient descent
+- Train on real dataset
+- Build with PyTorch
 
 ## Learning Goal
 
