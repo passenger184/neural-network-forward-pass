@@ -72,6 +72,21 @@ print("W4:", W4.shape)
 def relu(x):
     return np.maximum(0, x)
 
+# Softmax Activation Function
+
+def softmax(x):
+
+    # Subtract max value for numerical stability
+    shifted_x = x - np.max(x, axis=1, keepdims=True)
+
+    # Apply exponential
+    exp_values = np.exp(shifted_x)
+
+    # Normalize each row into probabilities
+    probabilities = exp_values / np.sum(exp_values, axis=1, keepdims=True)
+
+    return probabilities
+
 # FORWARD PASS
 
 # Layer 1
@@ -110,3 +125,9 @@ print("Output Shape:", output.shape)
 
 print("\nFinal Output (Logits):")
 print(output)
+
+# Convert logits into probabilities
+probabilities = softmax(output)
+
+print("\nSoftmax Probabilities:")
+print(probabilities)
