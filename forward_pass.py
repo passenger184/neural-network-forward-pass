@@ -35,6 +35,8 @@ hidden2_size = 8    # Neurons in hidden layer 2
 hidden3_size = 8    # Neurons in hidden layer 3
 output_size = 3     # Number of output neurons
 
+true_labels = np.array([0, 2, 1, 0, 2])
+
 # Simulated Input Data
 
 # Shape: (batch_size, input_size)
@@ -87,6 +89,22 @@ def softmax(x):
 
     return probabilities
 
+# Cross-Entropy Loss — measures how wrong the model's predictions are.
+def cross_entropy_loss(probabilities, true_labels):
+
+    batch_size = probabilities.shape[0]
+
+    correct_class_probs = probabilities[
+        np.arange(batch_size),
+        true_labels
+    ]
+
+    log_probs = -np.log(correct_class_probs + 1e-8)
+
+    loss = np.mean(log_probs)
+
+    return loss
+
 # FORWARD PASS
 
 # Layer 1
@@ -131,3 +149,18 @@ probabilities = softmax(output)
 
 print("\nSoftmax Probabilities:")
 print(probabilities)
+
+
+loss = cross_entropy_loss(probabilities, true_labels)
+
+print("\nLoss:")
+print(loss)
+
+predicted_classes = np.argmax(probabilities, axis=1)
+
+# Compare predictions to true labels
+accuracy = np.mean(predicted_classes == true_labels)
+
+print("\nPredicted:", predicted_classes)
+print("True:     ", true_labels)
+print(f"Accuracy:  {accuracy:.2%}")
